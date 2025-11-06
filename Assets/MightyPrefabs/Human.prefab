@@ -14,6 +14,9 @@ GameObject:
   - component: {fileID: 2263513773489747975}
   - component: {fileID: -1929047246202377658}
   - component: {fileID: -6304757829377002921}
+  - component: {fileID: 3274380695122385388}
+  - component: {fileID: 1426417356139543136}
+  - component: {fileID: -3330209776079900926}
   m_Layer: 0
   m_Name: Human
   m_TagString: Untagged
@@ -148,3 +151,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockSound: {fileID: 0}
   voiceLine: {fileID: 0}
+--- !u!65 &3274380695122385388
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306960858072366412}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 6, y: 2, z: 6}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1426417356139543136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306960858072366412}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 709653914e8429243ad324e3c75075b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueLine: Please... let me in! I'm not a Monster!!!
+  triggerDistance: 6
+  playerCamera: {fileID: 0}
+--- !u!114 &-3330209776079900926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306960858072366412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b95cb707ce8464a4cb4fafb01a5856a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
+  triggerDistance: 6
