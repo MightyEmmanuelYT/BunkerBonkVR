@@ -6,14 +6,13 @@ public class ResidentBehavior : MonoBehaviour
     public string residentName;
     [TextArea] public string[] idleDialogue;
     [TextArea] public string[] repeatDialogue;
-    [TextArea] public string[] specialDialogue;
 
     [Header("Interaction Settings")]
-    public float interactionDistance = 2f;
+    public float interactionDistance = 2.5f;
     public Transform playerCamera;
 
-    private bool hasInteracted = false;
-    private bool playerNearby = false;
+    private bool menuOpen = false;
+    private GameObject activeMenu;
 
     private void Start()
     {
@@ -25,43 +24,58 @@ public class ResidentBehavior : MonoBehaviour
     {
         if (playerCamera == null) return;
 
-        float dist = Vector3.Distance(playerCamera.position, transform.position);
-        playerNearby = dist < interactionDistance;
+        float distance = Vector3.Distance(playerCamera.position, transform.position);
 
-        if (playerNearby && Input.GetButtonDown("Fire1")) // Replace with your VR trigger input
+        if (distance < interactionDistance && !menuOpen)
         {
-            Interact();
+            ShowRadialMenu();
+            Debug.Log($"{residentName}: Player entered interaction range!");
+        }
+        else if (distance > interactionDistance && menuOpen)
+        {
+            CloseRadialMenu();
         }
     }
 
-    public void Interact()
+    private void ShowRadialMenu()
     {
-        string chosenLine;
-
-        if (!hasInteracted)
+        GameObject menuPrefab = Resources.Load<GameObject>("UI/RadialMenu");
+        if (menuPrefab == null)
         {
-            chosenLine = idleDialogue.Length > 0
-                ? idleDialogue[Random.Range(0, idleDialogue.Length)]
-                : $"{residentName} looks at you silently.";
-            hasInteracted = true;
-        }
-        else
-        {
-            chosenLine = repeatDialogue.Length > 0
-                ? repeatDialogue[Random.Range(0, repeatDialogue.Length)]
-                : $"{residentName} nods again.";
+            Debug.LogWarning("RadialMenu prefab not found in Resources/UI");
+            return;
         }
 
-        DialogueManager2.Instance.ShowDialogue($"{residentName}: \"{chosenLine}\"");
+        Debug.Log("Attempting to load and show RadialMenu prefab...");
+
+        activeMenu = Instantiate(menuPrefab, transform.position + Vector3.up * 1.5f, Quaternion.identity);
+        RadialMenuManager menu = activeMenu.GetComponent<RadialMenuManager>();
+        menu.Initialize(this);
+        menuOpen = true;
     }
 
-    // For story triggers later on
-    public void TriggerSpecialDialogue()
+    private void CloseRadialMenu()
     {
-        if (specialDialogue.Length > 0)
-        {
-            string line = specialDialogue[Random.Range(0, specialDialogue.Length)];
-            DialogueManager2.Instance.ShowDialogue($"{residentName}: \"{line}\"");
-        }
+        if (activeMenu != null)
+            Destroy(activeMenu);
+
+        menuOpen = false;
+    }
+
+    // --- Called by RadialMenuManager ---
+    public void TriggerDialogue()
+    {
+        string line = idleDialogue.Length > 0 ? idleDialogue[Random.Range(0, idleDialogue.Length)] : "They remain silent.";
+        DialogueManager2.Instance.ShowDialogue($"{residentName}: \"{line}\"");
+    }
+
+    public void TriggerTest()
+    {
+        DialogueManager2.Instance.ShowDialogue($"{residentName}: \"I don't know much about that...\"");
+    }
+
+    public void TriggerGive()
+    {
+        DialogueManager2.Instance.ShowDialogue($"{residentName}: \"Thanks... I guess.\"");
     }
 }
