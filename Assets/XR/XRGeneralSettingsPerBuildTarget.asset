@@ -31,20 +31,6 @@ MonoBehaviour:
   m_AutomaticRunning: 0
   m_Loaders:
   - {fileID: 11400000, guid: c2d78cdaf18683f4992eb3e29909d0a0, type: 2}
---- !u!114 &-654895686666122678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d236b7d11115f2143951f1e14045df39, type: 3}
-  m_Name: Unknown Settings
-  m_EditorClassIdentifier: 
-  m_LoaderManagerInstance: {fileID: 5352619021171844786}
-  m_InitManagerOnStart: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,11 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2dc886499c26824283350fa532d087d, type: 3}
   m_Name: XRGeneralSettingsPerBuildTarget
   m_EditorClassIdentifier: 
-  Keys: 070000000100000000000000
+  Keys: 0700000001000000
   Values:
   - {fileID: 4774298691743691927}
   - {fileID: -7975808463262067865}
-  - {fileID: -654895686666122678}
 --- !u!114 &341178228842195266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,7 +62,8 @@ MonoBehaviour:
   m_RequiresSettingsUpdate: 0
   m_AutomaticLoading: 0
   m_AutomaticRunning: 0
-  m_Loaders: []
+  m_Loaders:
+  - {fileID: 11400000, guid: c2d78cdaf18683f4992eb3e29909d0a0, type: 2}
 --- !u!114 &4774298691743691927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,20 +78,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LoaderManagerInstance: {fileID: -5921759566953316178}
   m_InitManagerOnStart: 1
---- !u!114 &5352619021171844786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4c3631f5e58749a59194e0cf6baf6d5, type: 3}
-  m_Name: Unknown Providers
-  m_EditorClassIdentifier: 
-  m_RequiresSettingsUpdate: 0
-  m_AutomaticLoading: 0
-  m_AutomaticRunning: 0
-  m_Loaders:
-  - {fileID: 11400000, guid: adcb7b68c2e01c64a927be1722d89573, type: 2}

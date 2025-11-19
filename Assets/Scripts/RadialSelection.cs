@@ -2,21 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
 
 
 public class RadialSelection : MonoBehaviour
 {
-    public OVRInput.Button spawnButton;
-
     [Range(2,10)]
     public int numberOfRadialPart;
     public GameObject radialPartPrefab;
     public Transform radialPartCanvas;
     public float angleBetweenPart = 10;
     public Transform handTransform;
-
-    public UnityEvent<int> onPartSelected;
 
     private List<GameObject> spawnedParts = new List<GameObject>();
     private int currentSelectedRadialPart = -1;
@@ -32,12 +27,6 @@ public class RadialSelection : MonoBehaviour
     {
         SpawnRadialPart();
         GetSelectedRadialPart();
-    }
-
-    public void HideAndTriggerSelected()
-    {
-        onPartSelected.Invoke(currentSelectedRadialPart);
-        radialPartCanvas.gameObject.SetActive(false); 
     }
 
     public void GetSelectedRadialPart()
