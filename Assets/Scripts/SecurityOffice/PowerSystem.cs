@@ -1,22 +1,57 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PowerSystem : MonoBehaviour
 {
-    public float maxPower = 100f;
-    public float currentPower = 100f;
+    public int SystemsOn;
+    public float Power = 100;
 
-    public bool HasPower(float amount)
+    [SerializeField] private TextMeshProUGUI PowerText;
+
+    void Start()
     {
-        return currentPower >= amount;
+
     }
 
-    public void Consume(float amount)
+    void Update()
     {
-        currentPower = Mathf.Max(0f, currentPower - amount);
-    }
+        if(SystemsOn < 0)
+        {
+            SystemsOn = 0;
+            Power -= 0.2f * Time.deltaTime;
+        }
 
-    public void Refill(float amount)
-    {
-        currentPower = Mathf.Min(maxPower, currentPower + amount);
+        if(SystemsOn > 5)
+        {
+            SystemsOn = 5;
+        }
+
+        if (SystemsOn == 1)
+        {
+            Power -= 0.6f * Time.deltaTime;
+        }
+        else if (SystemsOn == 2)
+        {
+            Power -= 1f * Time.deltaTime;
+
+        }
+        else if (SystemsOn == 3)
+        {
+            Power -= 1.5f * Time.deltaTime;
+
+        }
+        else if (SystemsOn == 4)
+        {
+            Power -= 2f * Time.deltaTime;
+        }
+        else if (SystemsOn == 5)
+        {
+            Power -= 3f * Time.deltaTime;
+        }
+
+        var power = string.Format("{0:0}", Power);
+        PowerText.text = $"{power}%";
     }
 }
